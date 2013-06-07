@@ -4,7 +4,7 @@ require_relative "lunchbot"
 server = "chat.freenode.net"
 port = "6667"
 nick = "LunchBot"
-channel = "#bitmakerlabs"
+channel = "#lunchbot"
 greeting_prefix = "PRIVMSG #bitmakerlabs"
 
 s = TCPSocket.open(server, port)
