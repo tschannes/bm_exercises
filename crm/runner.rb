@@ -46,6 +46,7 @@ class Runner
 				contact = gets.chomp.downcase
 				puts "Which piece of info would you like to modify? Choose between firstname(1), name(2), email(3), and remarks(4)!"
 				type = gets.chomp.to_i
+				next unless (1..4).include?(type)
 				puts "What is the new value?"
 				new_value = gets.chomp
 				db.modify_contact(contact, type, new_value)
