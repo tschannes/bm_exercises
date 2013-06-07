@@ -21,7 +21,7 @@ class IRCBot
 		server = "chat.freenode.net"
 		port = "6667"
 		nick = "LunchBot"
-		channel = "#bitmaker"
+		channel = "#lunchbot"
 		join_command = "lunchbot join"
 		list_command = "lunchbot group"
 		go_command = "lunchbot go"
@@ -42,14 +42,15 @@ class IRCBot
 			puts msg
 			break if msg.include?("exit me") #to exit
 
-			#repeats intro msg every 20 msgs to IRC
-			msg_counter -= 1
-			if msg_counter==0
-				s.puts intro_msg
-				msg_counter = 20
-			end
 
 			if msg.include?(msg_prefix)
+
+			#repeats intro msg every 20 msgs to IRC
+			msg_counter -= 1
+			if msg_counter<=0
+				s.puts msg_prefix + intro_msg
+				msg_counter = 15
+			end
 
 				#joining lunchbox group
 				if msg.include?(join_command)
@@ -67,11 +68,16 @@ class IRCBot
 						s.puts "#{msg_prefix} [#{i+1}] #{mem}"
 					end
 				elsif msg.include?(go_command)
-					restaurant = random_restaurant(lb)
-					output_string = lb.group_names.join(', ')
-					s.puts msg_prefix + output_string + ": you guys are going to #{restaurant.name}. Bon appetit!"
-					s.puts msg_prefix + "Restaurant description: " + restaurant.description
-					s.puts msg_prefix + "Located at: " + restaurant.location
+					name = name_parse(msg)
+					if lb.group_names.include?(name)
+						restaurant = random_restaurant(lb)
+						output_string = lb.group_names.join(', ')
+						s.puts msg_prefix + output_string + ": you guys are going to #{restaurant.name}. Bon appetit!"
+						s.puts msg_prefix + "Restaurant description: " + restaurant.description
+						s.puts msg_prefix + "Located at: " + restaurant.location
+					elsif
+						s.puts msg_prefix + "#{name}, join the group if you want to go to lunch!"
+					end
 				end
 			end
 
