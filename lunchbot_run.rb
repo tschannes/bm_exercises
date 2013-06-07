@@ -21,7 +21,7 @@ class IRCBot
 		server = "chat.freenode.net"
 		port = "6667"
 		nick = "LunchBot"
-		channel = "#lunchbot"
+		channel = "#bitmaker"
 		join_command = "lunchbot join"
 		list_command = "lunchbot group"
 		go_command = "lunchbot go"
