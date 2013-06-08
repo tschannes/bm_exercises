@@ -1,39 +1,75 @@
-class ship
+class Ship
 
-	def define_ships
+	def ship(i, a)
+		ship2 = Array.new(2){Array.new(2, @data[i][a])}
+		ship3 = Array.new(3){Array.new(2, @data[i][a])}
+		ship4 = Array.new(4){Array.new(2, @data[i][a])}
+		ship5 = Array.new(5){Array.new(2, @data[i][a])}
+	end
+
+	def create_ship(x, y)
+		i = 2
+		2.upto(5) do |ship| ship_Array.new(i){Array.new(2, @data[x][y])}
+		end
+	end
+
+	class Player_ship < Ship
 
 	end
 
-	class player_ship
+	class Computer_ship < Ship
 
-	end
-
-	class computer_ship
 	end
 
 end
 
-class sea
 
-	attr_accessor :sea
-	
-	def initialize
-		sea = {:one => [], :two => [], :three => [], :four => [], :five => [], :six => [], :seven => [], :eight=> [], :nine=>[], :ten => []}
-			
+class Sea
+
+	attr_accessor :battlefield
+
+   	def initialize
+   		@data = setup_data
+	    # @battlefield = display_battlefield
+   	end
+
+   	def setup_data
+   		data = Array.new(11, "-") { Array.new(10, "-") }
+    	data[10][(0..9)] = ("0".."9").to_a
+    	return data
+   	end
+
+	def [](x, y)
+	    @data[x][y]
 	end
 
-	def display_sea
-		display_sea = @sea[:one] + "\n"
+	def []=(x, y, value)
+	    @data[x][y] = value
 	end
+
+	def display_battlefield
+		row = 0
+		@data.each do |element|
+			print "#{row}" if row < 10
+			print "  " if row > 10
+			print "#{element}\n\n"
+			row += 1
+		end
+	end
+
+	def update_battlefield(player, shot)
+	  	
+	end
+
 end
 
-class shots
 
-	class player_shots
+class Shots
+	class Player_shots
 
 	end
 
-	class computer_shots
+	class Computer_shots
 
 	end
 end
