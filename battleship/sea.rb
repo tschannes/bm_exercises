@@ -1,14 +1,10 @@
 class Sea
 
-	attr_accessor :battlefield, :data
+	attr_accessor :data
 
    	def initialize
-   		@data = setup_data
+   		@data = Array.new(10) { Array.new(10, "-") }
    		@legend = setup_legend
-   	end
-
-   	def setup_data
-   		data = Array.new(10) { Array.new(10, "-") }
    	end
 
    	def setup_legend
@@ -34,6 +30,7 @@ class Sea
 			print "#{row} #{element}\n\n"
 			row += 1
 		end
+		Ship.new.write_to_data(@battlefield)
 	end
 
 	def update_battlefield(player, shot)
