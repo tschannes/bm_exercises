@@ -1,15 +1,41 @@
-class Ship
+class Sea
 
-	attr_accessor :battlefield
+	attr_accessor :data, :player
 
 	def initialize
 		@ship_coordinates = []
 		@fleet = Array.new(4){Array.new(1)}
-		@battlefield = Sea.new.data
-	end
-	
+   		@data = Array.new(10) { Array.new(10, "-") }
+   		@legend = setup_legend
+   	end
 
-	def set_ship
+   	def setup_legend
+   		legend = Array.new
+   		legend[0] = ("0".."9").to_a
+   		legend.flatten
+   	end
+
+	def [](x, y)
+	    @data[x][y]
+	end
+
+	def []=(x, y, value)
+	    @data[x][y] = value
+	end
+
+	def display_battlefield
+		print "#{@legend}\n"
+		50.times do print "-" end
+		print "\n\n"
+		row = 0
+		@data.each do |element|
+			print "#{row} #{element}\n\n"
+			row += 1
+		end
+		
+	end
+
+	def define_ships(player) #OUTPUTS THE FLEETS COORDINATES
 		puts "Set your ships by entering coordinates:"
 		counter = 0
 		2.upto(2) do |i|
@@ -25,42 +51,33 @@ class Ship
 				puts @ship_coordinates.inspect
 			end
 			@fleet[counter] = @ship_coordinates
-			@fleet.flatten.compact
+			@fleet = @fleet.flatten.compact.each_slice(2).to_a
 			puts "The current fleet is #{@fleet}"
 			counter += 1
 		end
+		@fleet
 	end
 
-	def write_to_data
-		@fleet = @fleet.flatten.compact.each_slice(2).to_a
-		puts @fleet.inspect
 
-		i = 0
-		(@fleet.size).times do |address| 
-			x = @fleet[i][0]
-			y = @fleet[i][1]
-			@battlefield[x][y] = "X"	
-		i += 1	
+	def update(player) #PUTS FLEET ONTO @DATA
+		@fleet.each do |small_ary|
+			x = small_ary[0]
+			y = small_ary[1]
+			if player == "X" 
+				@data[x][y] = "X"
+			elsif player == "Y"
+				@data[x][y] = "Y"
+			end
 		end
-		@battlefield
-		# Sea.new.display_battlefield
-		# @battlefield
-		puts @battlefield
+		@data
+	end
 
-
-		# puts @data.inspect
-		# Sea.new.display_battlefield
-		
-		#ADDRESS = @fleet
-
-		# @battlefield.each do |row|
-		# 	row.any? do|coordinate|  
-				# if coordinate == @coordinates 
-				# 	puts "X: #{@fleet[0]}, Y: #{@fleet.flatten.compact.inspect[1]}"
-				# 	@battlefield[@fleet[0]][@fleet[1]] = "X"
-	# 			# end
-	# 		end
-	# 	end
+	def player(round)
+		if round.even?
+			"X"
+		elsif !round.even?
+			"Y"
+		end	
 	end
 
 end
