@@ -11,6 +11,7 @@ class Battle
 		puts ""
 
 		round = 1
+		#two player setting up their ships
 		2.times do |x|
 			player = @battle.player(x)
 			puts "Player #{player}! Position your ships!"
@@ -46,7 +47,7 @@ class Battle
 			@battle.shot(shot_x, shot_y, round)
 			@battle.display_battlefield
 		
-			round += 1
+		round += 1
 		
 		end
 	end

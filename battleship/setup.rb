@@ -66,6 +66,7 @@ class Sea
 	end
 
 	def wins?
+		puts @data.flatten.inspect
 		if (@data.flatten & ["B"]).empty?
 			puts "A wins!"
 			false
