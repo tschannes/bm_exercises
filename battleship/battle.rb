@@ -10,27 +10,44 @@ class Battle
 		@battle.display_battlefield
 		puts ""
 
-		
 		round = 1
-		
-		while true
-		
-			2.times do |x|
+		2.times do |x|
 			player = @battle.player(x)
 			puts "Player #{player}! Position your ships!"
-			# @battle.player(x)
 			
-			@battle.define_ships(player)
-			@battle.update(player)
-			@battle.display_battlefield
-			
+			puts "Set your ships by entering coordinates:"
+			counter = 0
+			2.upto(2) do |i|
+				@ship_coordinates = []
+				puts "Set your ship with length #{i}!"
+				i.times do 
+					print "X:"
+					x = gets.chomp.to_i
+					print "Y:"
+					y = gets.chomp.to_i
+
+					@battle.define_ships(x, y, counter)
+					counter += 1
+				end
 			end
 
-			puts "Player #{@battle.player(round)}, take shot Nr. #{round}."
+			@battle.update
+			@battle.display_battlefield
 			
+		end
+
+		while @battle.wins?
+
+			puts "Player #{@battle.player(round)}, take shot Nr. #{round}."
+			print "X:"
+			shot_x = gets.chomp.to_i
+			print "Y:"
+			shot_y = gets.chomp.to_i
+			@battle.shot(shot_x, shot_y, round)
+			@battle.display_battlefield
 		
 			round += 1
-		break
+		
 		end
 	end
 end
