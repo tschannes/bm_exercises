@@ -1,5 +1,5 @@
 class Hangman
-	LIST = ["canada", "england", "australia", "japan"]
+	LIST = ["canada"]#, "england", "australia", "japan"]
   attr_accessor :word, :chances, :board, :list, :guesses, :answer, :string
 
   class InvalidGuessException < Exception
@@ -11,97 +11,43 @@ class Hangman
     @chances = 8
     @guesses = []
     @word    = LIST.sample
-    @board   = draw_board(@word)
+    @board   = draw_board
   end
 
-  # replace indexes of @board with letter where the same indexes of @word are letter
-  # in other words, if @board is _ _ _ _ _ _ and @word is canada
-  # and the letter guessed is a
-  # then @board should become _ a _ a _ a
-  def put_letter_on_board(letter)
-    #board = string.split(" ")
-    #word.split("").each_with_index do |letter_on_board, i|
-     # puts "word is: #{word}"
-      #if letter_on_board == letter
-       # board[i] = word[i]
-        #puts "board #{board[i]}, word #{word[i]}"
-      #end
-      #string = board.join(" ")
-      #puts "This is board after a hit: #{board}!"
-    #end
-    #alternative
-    #for i in (0..@word.length)
-      puts "word is: " + @word
-      (@word.length).times do
-      @board[i] = letter if @word[i] == letter
+  def guess(letter)
+    if valid_guess?(letter)    
+      if word_has?(letter)
+        put_letter_on_board(letter)
+        puts "method guess is being called"
+      else
+        wrong_letter(letter) if !@guesses.include? letter
+      end
     end
   end
 
-  # return @guesses as a string
-  def guesses
-    @guesses.join(", ")
+  def put_letter_on_board(letter)
+      i = 0
+    (@word.length).times do
+      @board[i] = letter if @word[i] == letter
+      i += 1
+    end
   end
 
-  def test
-    puts "it works"
+  def draw_board
+      '_' * @word.length
   end
 
-  # return true if @chances is 0, otherwise return false
+  
+
   def lost?
-    #if chances == 0 && board != word
-     #   true
-    #else
-     #   false
-    #end
     @chances == 0
   end
 
-  # if the word has the given letter, put it on the board, otherwise, it's a wrong guess
-  def guess(letter)
-    raise InvalidGuessException.new("Invalid Guess!") unless valid_guess?(letter)
-    
-    if word_has?(letter)
-      put_letter_on_board(letter)
-      #puts "method guess is being called"
-    else
-      wrong_letter(letter) if !@guesses.include? letter
-      #puts "method guess returns false"
-    end
-  end
-
-  # return true if @board doesn't have a '_', otherwise return false
   def win?
-    #if board.include? "_ "
-     # false
-    #else
-     # true
-    #end
     !@board.include? '_'
   end
 
   
-  
-  
-  
-  # return a string of underscores equal to length of the given word
-  def draw_board(word)
-    #(word.length).times do |i|
-    # string << ("_ ")
-      '_' * @word.length
-    end
-  end
-
-  
-
-  
-
-
-
-  
-
-  def valid_guess?(guess)
-    guess.length == 1
-  end
 
   # decrement # of chances and add letter to guesses
   def wrong_letter(letter)
@@ -112,15 +58,20 @@ class Hangman
 
   # return true if word has letter
   def word_has?(letter)
-    #puts "#{word}"
-    #word.each_char do |char| 
-     #   false
-      #if char == letter
-       # puts "character is #{char}, letter is #{letter}"
-        #true
-      #end
-    #end
-    if @word.include?(letter)
+    @word.include?(letter)
+  end
+
+  def valid_guess?(guess)
+    if guess.is_a? String
+      guess.length == 1
+    else
+      raise InvalidGuessException.new("Invalid Guess!")
+    end
+  end
+
+
+  def guesses
+    @guesses.join(", ")
   end
   
 end

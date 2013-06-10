@@ -1,4 +1,4 @@
-require_relative "hangman2" #require executes code in hangman2
+require_relative "hangman2.rb" #require executes code in hangman2
 #require "./hangman2"
 require 'pry'
 
@@ -15,6 +15,7 @@ class HangmanRunner
 	    print "Take your best shot! Enter guess: "
 	    #binding.pry
 	   	letter = gets.chomp
+	   	@game.put_letter_on_board(letter)
 	    begin
 	    	@game.guess(letter)
 	 	rescue Hangman::InvalidGuessException => e
