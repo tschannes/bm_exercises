@@ -25,7 +25,7 @@ class IRCBot
 		join_command = "lunchbot join"
 		list_command = "lunchbot group"
 		go_command = "lunchbot go"
-		intro_msg = "Welcome to the amazing Lunchbot! Not sure what to eat? Join by typing '#{join_command} and we'll decide for you!"
+		intro_msg = "Welcome to the amazing Lunchbot! Not sure what to eat? Join by typing '#{join_command}' and we'll decide for you!"
 		msg_counter = 20
 		msg_prefix = "PRIVMSG #{channel} :"
 
@@ -59,7 +59,7 @@ class IRCBot
 						s.puts msg_prefix + "#{name} has already joined"
 					else
 						lb.join(name)
-						s.puts msg_prefix + "#{name} has joined Lunchbot! Type #{list_command} to list all members, or #{go_command} to decide where to go"
+						s.puts msg_prefix + "#{name} has joined Lunchbot! Type '#{list_command}' to list all members, or '#{go_command}' to decide where to go"
 					end
 
 				#listing all group members
