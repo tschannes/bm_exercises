@@ -48,7 +48,7 @@ class DatabaseTest < Test::Unit::TestCase
 		assert_equal 1, @db.contacts.length
 	end
 
-	def test
+	def test_display_displays_correctly
 
 	end
 
