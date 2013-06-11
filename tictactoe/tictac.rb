@@ -16,21 +16,26 @@ class TicTac
 
 
 	def guess(num)
-		@list_of_guesses.each { |k, v| v << num if "#{k}" == "#{player}" }
+		@list_of_guesses[player] << num
+		# puts "this is the list of guesses"
+		# puts @list_of_guesses[player]
 	end
 
 
 	def win?
-		# (0.upto(7)) do if WINNING_COMBOS[i]
 		guesses = @list_of_guesses[player]
-		win = WINNING_COMBOS.map do |small_array| 
-			true if (small_array & guesses == guesses )
-			puts "ary : #{small_array}"
-			puts "guesses: #{@list_of_guesses[player]}"
-			puts "win inspect: #{win.inspect}"
+		WINNING_COMBOS.map do |combo| 
+			if (combo & guesses == combo) && (guesses.size == 3)
+				puts "the winning combo was"
+				print combo
+				return true
+				break
 			end
-		win = win#.compact.flatten
-		puts "list of guesses: #{@list_of_guesses}"
+			# puts "ary : #{small_array}"
+			# puts "guesses: #{@list_of_guesses[player]}"
+			# puts "win inspect: #{win.inspect}"
+		end
+		return false
 	end
 
 

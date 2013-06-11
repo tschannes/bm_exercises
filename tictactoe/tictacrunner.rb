@@ -9,7 +9,6 @@ class TicTacRunner
 	    puts"#{@game.player} make your move:"
 	    num = gets.chomp.to_i
 	    @game.guess(num)
-	    puts @game.guess(num)
 		@game.display_guess(num)
 	    if @game.win?
 	    	puts "\n\nCongratulations! You won!\n"
