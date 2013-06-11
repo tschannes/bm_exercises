@@ -6,7 +6,6 @@ class TicTac
 			@number_of_rounds_total = 0	
 			@board = "1 2 3\n-----\n4 5 6\n-----\n7 8 9"
 			@list_of_guesses = {:X => [], :O => []}
-			# @list_of_guesses.default = nil
 	end
 
 
@@ -17,8 +16,6 @@ class TicTac
 
 	def guess(num)
 		@list_of_guesses[player] << num
-		# puts "this is the list of guesses"
-		# puts @list_of_guesses[player]
 	end
 
 
@@ -31,9 +28,6 @@ class TicTac
 				return true
 				break
 			end
-			# puts "ary : #{small_array}"
-			# puts "guesses: #{@list_of_guesses[player]}"
-			# puts "win inspect: #{win.inspect}"
 		end
 		return false
 	end
@@ -54,7 +48,6 @@ class TicTac
 
 
 	def display_guess(num)
-		#print "we are trying to replace #{num.inspect} with #{player} on #{@board.inspect}"
 		@board.gsub!("#{num}", "#{player}")
 	end	
 end
