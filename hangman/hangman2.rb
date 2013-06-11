@@ -18,7 +18,6 @@ class Hangman
     if valid_guess?(letter)    
       if word_has?(letter)
         put_letter_on_board(letter)
-        puts "method guess is being called"
       else
         wrong_letter(letter) if !@guesses.include? letter
       end
@@ -37,8 +36,6 @@ class Hangman
       '_' * @word.length
   end
 
-  
-
   def lost?
     @chances == 0
   end
@@ -47,16 +44,13 @@ class Hangman
     !@board.include? '_'
   end
 
-  
 
-  # decrement # of chances and add letter to guesses
   def wrong_letter(letter)
-    #puts"wrong_letter being called"
     @guesses << letter
     @chances -= 1
   end
 
-  # return true if word has letter
+
   def word_has?(letter)
     @word.include?(letter)
   end
