@@ -6,7 +6,7 @@ class TicTac
 			@number_of_rounds_total = 0	
 			@board = "1 2 3\n-----\n4 5 6\n-----\n7 8 9"
 			@list_of_guesses = {:X => [], :O => []}
-			@list_of_guesses.default = nil
+			# @list_of_guesses.default = nil
 	end
 
 
@@ -15,28 +15,27 @@ class TicTac
 	end
 
 
-	def list_of_guesses(num)
+	def guess(num)
 		@list_of_guesses.each { |k, v| v << num if "#{k}" == "#{player}" }
 	end
 
 
 	def win?
-		
-		WINNING_COMBOS.each do |small_array|
-			# puts "Small Array.inspect" + small_array.inspect #=> [1, 2, 3]
-			# puts player
-			# puts @list_of_guesses[player].inspect
-			if @list_of_guesses[player] & small_array == small_array && @list_of_guesses[player].size == 3
-				puts "#{player} wins!"
-				true
-			else
+		# (0.upto(7)) do if WINNING_COMBOS[i]
+		guesses = @list_of_guesses[player]
+		win = WINNING_COMBOS.map do |small_array| 
+			true if (small_array & guesses == guesses )
+			puts "ary : #{small_array}"
+			puts "guesses: #{@list_of_guesses[player]}"
+			puts "win inspect: #{win.inspect}"
 			end
-		end
+		win = win#.compact.flatten
+		puts "list of guesses: #{@list_of_guesses}"
 	end
 
 
 	def draw?
-		true unless @board.match(/\d/) && win?(@list_of_guesses) == false
+		 !@board.match(/\d/) && win? == false
 	end
 
 
