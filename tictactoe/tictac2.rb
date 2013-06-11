@@ -16,6 +16,7 @@ class TicTac
 
 	def guess(num)
 		@list_of_guesses[player] << num
+		@list_of_guesses
 	end
 
 
