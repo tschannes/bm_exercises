@@ -1,0 +1,73 @@
+/*reset*/
+
+
+/*custom styles*/
+h1{
+	color:purple;
+	size: 4em;
+}
+a{
+	font-size:14px;
+}
+
+html, body{
+	width:100%;
+}
+
+#container{
+	width: 80%;
+	margin:auto;
+}
+
+#graph{
+	width:100%;
+}
+
+.column{
+	/*display:none;*/
+	
+	width: 100%;
+	height:40px;
+	background-color:#4e5052;
+	margin-bottom:10px;
+}
+.column a {
+	color:purple;
+	display:block;
+	padding: 10px;
+}
+.column a:hover{
+	color:white;
+}
+
+.graph-outer {
+    background: #4e5052;
+    height: 40px;
+    width: 100%;   
+    overflow: hidden;
+    margin-bottom:10px;
+    float:left;
+}
+
+.inner-left-bar {
+    background: purple;
+    width: 33%;
+    height: 100%;
+    text-align: right;
+    float: left;
+}
+
+.inner-middle-bar {
+    background: transparent;
+    width: 33%;
+    height: 100%;
+    text-align: right;
+    float: left;
+}
+
+.inner-right-bar
+legend{
+	width:30%;
+	color:purple;
+	float:left;
+}

@@ -7,29 +7,32 @@ doc = Nokogiri::HTML(open('http://www.ebay.com/sch/i.html?_odkw=moulton&_osacat=
 
 
 
-moultons = {:description => []}, {:price =>[]}
+moultons = [["description"],["price"]]
 	
-	description = doc.css('.dtl')
+
+	description = doc.css('div.ittl h4 a.vip')
 	description.each do |x|
-		moultons[0][:description] << x.text.to_s.gsub(/\r/, "").gsub(/\n/, "").gsub(/\t/, "").gsub(/\s{2}/, "").gsub(/or Best Offer/, "").gsub(/Buy It Now/, "")
+		unless x.text.strip.empty?
+			moultons[0] << x.text.to_s.gsub(/\r/, "").gsub(/\n/, "").gsub(/\t/, "").gsub(/\s{2}/, "").gsub(/or Best Offer/, "").gsub(/Buy It Now/, "")
+		end
 	end
 
 
-	price = doc.css('.g-b')	
+	price = doc.css('div.g-b')	
 	price.each do |x|
-		moultons[1][:price] << x.text.to_s.gsub(/\r/, "").gsub(/\n/, "").gsub(/\t/, "").gsub(/\s{2}/, "").gsub(/or Best Offer/, "").gsub(/Buy It Now/, "")
+		unless x.text.strip.empty?
+			moultons[1] << x.text.to_s.gsub(/\r/, "").gsub(/\n/, "").gsub(/\t/, "").gsub(/\s{2}/, "").gsub(/or Best Offer/, "").gsub(/Buy It Now/, "")
+		end
 	end
+	moultons = moultons[1].zip(moultons[0])
+	# moultons = moultons.each do |moulton|
 
-
-contact_row_data = moultons.each do |row|
-	row = [moultons[:description][0], moultons[:price][1]]
-end
-pry.binding
+	# puts "without iteration"
+	# puts moultons.inspect
 
 
 CSV.open('data.csv', 'wb') do |row|
-  row << contact_row_data
+  moultons.each do |d|
+    row << d
   end
-
-
-
+end
