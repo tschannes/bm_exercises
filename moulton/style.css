@@ -57,17 +57,5 @@ html, body{
     float: left;
 }
 
-.inner-middle-bar {
-    background: transparent;
-    width: 33%;
-    height: 100%;
-    text-align: right;
-    float: left;
-}
 
 .inner-right-bar
-legend{
-	width:30%;
-	color:purple;
-	float:left;
-}

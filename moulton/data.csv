@@ -8,3 +8,8 @@ $47.06,VINTAGE MOULTON STANDARD SERIES 2 • CAN POST ABROAD
 "$1,411.83",Moulton Bicycle Moulton Deluxe 1968 4 speed sturmey archer hub
 $431.39,"Vintage 1968 Raleigh RSW Compact Folding Bicycle 16"" Wheels with Plaid Bag Green"
 $54.90,"Rare 1960s England Raleigh RSW Folding Bicycle 16"" Tires + Rare rear Pannier Bag"
+
+
+
+data.each do d
+	puts "div class stzle=#"
