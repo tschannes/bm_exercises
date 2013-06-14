@@ -8,18 +8,25 @@ html, body{
 #graph{
 	width:100%;
 	overflow:hidden;
-	/*position:absolute;*/
 }
 .column{
 	width:1%;
 	background:purple;
 	float:left;
+	color:transparent;
 }
-.column a span{
-	color:grey;
-	position:relative;
-	/*display:none;*/
+.column:hover a span{
+	background:white;
+	color:purple;
+	float:right;
+	margin-top:10px;
+	padding:5px;
+	border-radius:5px;
+	background-color: rgba(purple, 0.5);
 }
-#graph:hover;{
-	color:black;
+.column:hover{
+	width:1%;
+	background:purple;
+	float:left;
+	color:transparent;
 }

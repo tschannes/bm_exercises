@@ -12,7 +12,7 @@ html.puts "</head>"
 html.puts "<body>"
 	html.puts "<div id='container'>"
 		html.puts "<h1>The biggest movie ever!</h1>"
-		html.puts "<p>brought to you by «Tiger, The Fat Cat»</p>"
+		html.puts "<p>brought to you by Tiger, The Fat Cat</p>"
 		html.puts "<div id='graph'>"
 
 

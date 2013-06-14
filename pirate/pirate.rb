@@ -40,7 +40,9 @@ links.each do |link|
 	else
 		puts "reading #{link}"
 		size = doc.css('div#detailsframe div#details dl.col1 dd')[2].text
-		size = size.scan(/(\d+\WBytes)/).flatten
+		size = size.scan(/(\d+\WBytes)/)
+		size = size.flatten
+		size = size[0].to_i
 		sizes << size
 
 		name = doc.css('div#title').text.strip
@@ -57,9 +59,12 @@ puts "Sizes: #{sizes.inspect}"
 puts "Names: #{names.inspect}"
 data = names.zip(sizes)
 puts data.inspect
+puts "size #{sizes}"
 
 #sorting the data
-sorted_data = data.sort_by{|x,y|y}
+sorted_data = data.sort_by do |x|
+	x[1]
+end
 
 
 #piping data to file
