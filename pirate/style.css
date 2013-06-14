@@ -1,0 +1,25 @@
+html, body{
+	width:100%;
+}
+#container{
+	width:90%;
+	margin:auto;
+}
+#graph{
+	width:100%;
+	overflow:hidden;
+	/*position:absolute;*/
+}
+.column{
+	width:1%;
+	background:purple;
+	float:left;
+}
+.column a span{
+	color:grey;
+	position:relative;
+	/*display:none;*/
+}
+#graph:hover;{
+	color:black;
+}
