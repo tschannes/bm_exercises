@@ -42,8 +42,8 @@ links.each do |link|
 		size = doc.css('div#detailsframe div#details dl.col1 dd')[2].text
 		size = size.scan(/(\d+\WBytes)/)
 		size = size.flatten
-		size = size[0].to_i
-		sizes << size
+		size = size[0]
+		sizes << size.to_i
 
 		name = doc.css('div#title').text.strip
 		names << name

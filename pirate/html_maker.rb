@@ -17,15 +17,17 @@ html.puts "<body>"
 
 
 #grabbing names and sizes from data
+	i = 10
 	CSV.foreach("data.csv") do |row|
   		name = row[0]
   		size = row[1]
-  		size = size.scan(/(\d+\WBytes)/)
+  		size = size.scan(/(\d+)/)
 
 	
-			html.puts "<div class='column' style='height:#{size}'>"
-				html.puts "<a><span>#{name}</span></a>"
+			html.puts "<div class='column' style='height:#{(size[0][0].to_i)/4000000}px;'>"
+				html.puts "<a><span>#{name}<br>#{size[0][0].to_i} Bytes</span></a>"
 			html.puts "</div>"
+			i += 1
 	end	
 			
 		html.puts "</div>"

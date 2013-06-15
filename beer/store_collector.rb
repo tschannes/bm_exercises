@@ -1,28 +1,47 @@
 require 'open-uri'
-require 'json'
-
-url = "http://lcboapi.com/stores"
-
-
-data = [{name:[]}, {latitude: []}, {longitude:[]}]
-
-raw = open(url)
-
-parsed = JSON.parse(raw)
+require 'JSON'
+require 'CSV'
 
 
-stores = parsed_data["result"]
 
-longitude = stores["longitude"]
-data[2][:longitude] << longitude
-latitude = stores["latitude"]
-data[1][:latitude] << latitude
-name = stores["name"]
-data[0][:name] << stores
+class Beer
 
-# data = Struct.new
-# data = data(:name, :latitude, :longitude)
+	attr_accessor :data
 
-print data.inspect
+	def initialize
+		@data = {address1:[], address2: [], city:[], post:[]}
+	end
 
+	def get_data
+		url = "http://lcboapi.com/stores"
+		raw = open(url).read
 
+		parsed = JSON.parse(raw)
+
+		stores = parsed["result"]
+			stores.each do |store|
+				# @data[:longitude] << store["longitude"]
+				# @data[:latitude] << store["latitude"]
+				# @data[:name] << store["name"]
+				@data[:address1] << store["address_line_1"]
+				@data[:address2] << store["address_line_2"]
+				@data[:city] << store["city"]
+				@data[:post] << store["postal_code"]
+				
+			end
+		@data
+		
+	end
+end
+puts @data.inspect
+
+# karte = Data.new
+# puts karte.get_data
+locations = Beer.new
+locations = locations.get_data
+
+CSV.open('data.csv', 'wb') do |row|
+  locations.each do |d|
+    row << d
+  end
+end
