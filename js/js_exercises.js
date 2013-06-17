@@ -53,7 +53,63 @@ for (i = 0; i < books.length; i++){
 
 }
 
+// exercises data structures{}
 
+var books = [{
+    author: "Hitchcock",
+    title: "The 39 Steps"},
+      {
+          author: "Jorge Luis Borges",
+          title: "Bifurcado"}];
+
+
+function lit(name){
+for (i = 0; i < books.length; i++){
+    var book = books[i];
+    if (book.author == name){
+          console.log(book.author + "wrote" + book.title)}
+          
+    else if (book.title == name){
+        console.log(book.title + " was written by " + book.author)  
+    }
+    else{
+        console.log("nothing found")  
+    }
+}
+
+}
+lit("Bifurcado");
+
+
+// movie library
+
+var movies = [{
+    title: "the three kings",
+    duration: 90,
+    stars: ["tonietta", "jackson", "cool dude"]},
+    {
+        title: "mickey mouse",
+        duration: 60, 
+        stars: ["minney", "mickey", "donald"]   
+    }];
+    
+function mov(title){
+    for(i = 0; i < movies.length; i++){
+    var movie = movies[i]
+    if (title == movie.title || title == movie.duration){
+        console.log("The movie " + movie.title + " lasts " + movie.duration + " minutes.")
+        console.log("featuring: ")
+        
+        for(i = 0; i < movie.stars.length; i++){
+            var star = movie.stars[i];
+            console.log(star);
+        }
+            
+        }
+    }  
+}
+
+mov("60")
 
 
 doc.getElementById()
