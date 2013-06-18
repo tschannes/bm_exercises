@@ -1,25 +1,29 @@
 html, body{
 	width:100%;
-	color:white;
+	color:purple;
 }
 #container{
 	margin:auto;
-	background-color:grey;
 	width:90%;
-	padding:20px;
-	height:500px;
+	margin:20px;
 }
 button{
+	font-size:2em;
 	background-color:purple;
-	width:33%;
+	width:33.33%;
 	height:45px;
 	float:left;
 	border:solid 2px white;
 	color:white;
 }
-button:active, button:active, button:visited{
+.active{
 	background-color:#38003b;
 }
 h1{
-	color:white;
+	color:#38003b;
+	text-align:center;
+	padding:10px;
+}
+p{
+	text-align:center;
 }
