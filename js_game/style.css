@@ -1,0 +1,25 @@
+html, body{
+	width:100%;
+	color:white;
+}
+#container{
+	margin:auto;
+	background-color:grey;
+	width:90%;
+	padding:20px;
+	height:500px;
+}
+button{
+	background-color:purple;
+	width:33%;
+	height:45px;
+	float:left;
+	border:solid 2px white;
+	color:white;
+}
+button:active, button:active, button:visited{
+	background-color:#38003b;
+}
+h1{
+	color:white;
+}

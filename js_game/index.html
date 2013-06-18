@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<title>TicTacToeJS</title>
+</head>
+<body>
+	<div id="container">
+		<h1>TicTacToeJS</h1>
+		<p>Pick your Number!</p>
+
+		<button id="1">1</button>
+		<button id="2">2</button>
+		<button id="3">3</button>
+		<button id="4">4</button>
+		<button id="5">5</button>
+		<button id="6">6</button>
+		<button id="7">7</button>
+		<button id="8">8</button>
+		<button id="9">9</button>
+	</div>
+
+	<script>
+
+	$(document).ready(function() {
+
+		var count = 0;
+	
+		var player = (function(count){	
+		if(count % 2 === 0){
+			return "O";
+		}else{
+			return "X";
+			}
+		});
+
+		// game logic
+    	var winners = ["#1, #2, #3", "#4, #5, #6", "#7, #8, #9", "#1, #4, #7", "#2, #5, #8", "#3, #6, #9", "#1, #5, #9", "#3, #5, #7"]
+
+
+    	$("button").click(function(){
+    		$(this).addClass('active');
+    		$(this).text(player( count ));
+    		count++;
+
+			// loop starts
+	    	for (var i=0;i<9;i++){
+
+		    	var win = (function(){
+		    		console.log($(winners[i]).text()); 
+		    		if(($(winners[i]).text() == "OOO") || ($(winners[i]).text() == "XXX")){
+		    		// if($(winners[i]).text() == (("OOO" || "XXX") || ("XXX" || "OOO"))){
+		    			console.log("stuff is true")
+		    			$('h1').text(player(count) + " ,You WON!!!");
+		    			$('p').slideUp();
+		    		}else if ($(winners[i]).text() != ("XXX" || "OOO")){
+		    			$('p').text("Try again!");
+		    		};
+		    	});
+
+		    	win();
+
+	    	// loop ends
+	    	}
+    	});
+	});
+	</script>
+</body>
+</html>
