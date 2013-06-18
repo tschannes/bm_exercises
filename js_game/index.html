@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="fittext.js"></script>
+	
 	<title>TicTacToeJS</title>
 </head>
 <body>
 	<div id="container">
-		<h1>TicTacToeJS</h1>
+		<h1 id="header">TicTacToeJS</h1>
 		<p>Pick your Number!</p>
 
 		<button id="1">1</button>
@@ -23,8 +25,14 @@
 	</div>
 
 	<script>
+	
+  	jQuery("#header").fitText(1.2, { minFontSize: '40px', maxFontSize: '100px' });
+	
 
 	$(document).ready(function() {
+		// fittext
+		// $("h1").fitText();
+
 		// making stuff resizeable
 		$('button').css('height', function(index) {
 		  		return $(window).height() * 0.2;
